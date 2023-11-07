@@ -13,8 +13,8 @@ func TestCreateNewUserRole(t *testing.T) {
 	var userdata User
 	userdata.Username = "pakarbi"
 	userdata.Password = "lodons"
-	userdata.Role = "admin"
-	mconn := SetConnection("MONGOSTRING", "pakarbi")
+	userdata.Role = "user"
+	mconn := SetConnection("MONGOSTRING", "dbpakarbi")
 	CreateNewUserRole(mconn, "user", userdata)
 }
 
@@ -28,11 +28,11 @@ func TestCreateNewUserRole(t *testing.T) {
 func CreateNewUserToken(t *testing.T) {
 	var userdata User
 	userdata.Username = "pakarbi"
-	userdata.Password = "lodons"
-	userdata.Role = "admin"
+	userdata.Password = "pakarbipass"
+	userdata.Role = "user"
 
 	// Create a MongoDB connection
-	mconn := SetConnection("MONGOSTRING", "pakarbi")
+	mconn := SetConnection("MONGOSTRING", "dbpakarbi")
 
 	// Call the function to create a user and generate a token
 	err := CreateUserAndAddToken("your_private_key_env", mconn, "user", userdata)
@@ -43,11 +43,11 @@ func CreateNewUserToken(t *testing.T) {
 }
 
 func TestGFCPostHandlerUser(t *testing.T) {
-	mconn := SetConnection("MONGOSTRING", "pakarbi")
+	mconn := SetConnection("MONGOSTRING", "dbpakarbi")
 	var userdata User
 	userdata.Username = "pakarbi"
 	userdata.Password = "pakarbipass"
-	userdata.Role = "admin"
+	userdata.Role = "user"
 	CreateNewUserRole(mconn, "user", userdata)
 }
 
@@ -69,7 +69,7 @@ func TestGeneratePrivateKeyPaseto(t *testing.T) {
 }
 
 func TestHashFunction(t *testing.T) {
-	mconn := SetConnection("MONGOSTRING", "pasabar13")
+	mconn := SetConnection("MONGOSTRING", "dbpakarbi")
 	var userdata User
 	userdata.Username = "rizki"
 	userdata.Password = "testpass"
@@ -85,7 +85,7 @@ func TestHashFunction(t *testing.T) {
 }
 
 func TestIsPasswordValid(t *testing.T) {
-	mconn := SetConnection("MONGOSTRING", "pakarbi")
+	mconn := SetConnection("MONGOSTRING", "dbpakarbi")
 	var userdata User
 	userdata.Username = "rizki"
 	userdata.Password = "testpass"
@@ -95,10 +95,10 @@ func TestIsPasswordValid(t *testing.T) {
 }
 
 func TestUserFix(t *testing.T) {
-	mconn := SetConnection("MONGOSTRING", "pakarbi")
+	mconn := SetConnection("MONGOSTRING", "dbpakarbi")
 	var userdata User
 	userdata.Username = "pakarbi"
-	userdata.Password = "lodons"
-	userdata.Role = "admin"
+	userdata.Password = "pakarbipass"
+	userdata.Role = "user"
 	CreateUser(mconn, "user", userdata)
 }
